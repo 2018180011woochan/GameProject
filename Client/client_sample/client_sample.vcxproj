@@ -127,8 +127,8 @@
     <Image Include="chessmap.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\multi_iocp_server\multi_iocp_server\Enum.h" />
-    <ClInclude Include="..\..\multi_iocp_server\multi_iocp_server\protocol.h" />
+    <ClInclude Include="..\..\Server\GameServer\GameServer\Enum.h" />
+    <ClInclude Include="..\..\Server\GameServer\GameServer\protocol.h" />
     <ClInclude Include="include\SFML\Config.hpp" />
     <ClInclude Include="include\SFML\Graphics.hpp" />
     <ClInclude Include="include\SFML\Graphics\BlendMode.hpp" />

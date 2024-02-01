@@ -20,8 +20,8 @@ using namespace std;
 #pragma comment (lib, "winmm.lib")
 #pragma comment (lib, "ws2_32.lib")
 
-#include "..\..\multi_iocp_server\multi_iocp_server\protocol.h"
-#include "..\..\multi_iocp_server\multi_iocp_server\Enum.h"
+#include "..\..\Server\GameServer\GameServer/protocol.h"
+#include "..\..\Server\GameServer\GameServer/Enum.h"
 
 enum NameColor { COLOR_GREEN, COLOR_YELLO, COLOR_RED };
 
