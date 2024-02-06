@@ -1,31 +1,6 @@
-#define SFML_STATIC 1
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <iostream>
-#include <chrono>
-using namespace std;
-
-#ifdef _DEBUG
-#pragma comment (lib, "lib/sfml-graphics-s-d.lib")
-#pragma comment (lib, "lib/sfml-window-s-d.lib")
-#pragma comment (lib, "lib/sfml-system-s-d.lib")
-#pragma comment (lib, "lib/sfml-network-s-d.lib")
-#else
-#pragma comment (lib, "lib/sfml-graphics-s.lib")
-#pragma comment (lib, "lib/sfml-window-s.lib")
-#pragma comment (lib, "lib/sfml-system-s.lib")
-#pragma comment (lib, "lib/sfml-network-s.lib")
-#endif
-#pragma comment (lib, "opengl32.lib")
-#pragma comment (lib, "winmm.lib")
-#pragma comment (lib, "ws2_32.lib")
-
-#include "..\..\Server\GameServer\GameServer/protocol.h"
-#include "..\..\Server\GameServer\GameServer/Enum.h"
-
-enum NameColor { COLOR_GREEN, COLOR_YELLO, COLOR_RED };
-
-sf::TcpSocket socket;
+//#define SFML_STATIC 1
+#include "stdafx.h"
+#include "GameObject.h"
 
 constexpr auto SCREEN_WIDTH = 16;
 constexpr auto SCREEN_HEIGHT = 16;
@@ -35,9 +10,6 @@ constexpr auto TILE_HEIGHT = 65;
 constexpr auto WINDOW_WIDTH = 65 * SCREEN_WIDTH + 10;   // size of window
 constexpr auto WINDOW_HEIGHT = 65 * SCREEN_WIDTH + 10;
 
-int g_left_x;
-int g_top_y;
-
 bool g_isChat;
 bool party_invite = false;
 int temp_id = 99999;
@@ -45,10 +17,6 @@ int temp_id = 99999;
 char Nickname[20] = "temp";
 
 bool isStressTest = false;
-
-sf::RenderWindow* g_window;
-sf::Font g_font;
-sf::Text chatmessage;
 
 vector<sf::Text> curChatMessage;
 vector<sf::Text> curNoticeMessage;

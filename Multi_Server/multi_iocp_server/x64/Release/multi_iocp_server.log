@@ -1,0 +1,21 @@
+﻿  pch.cpp
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\pch.h(20,1): warning C4005: 'UNICODE': 매크로 재정의
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\pch.h(20,1): message : 이전에 명령줄에서 선언된 'UNICODE'
+  main.cpp
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\main.cpp(283,90): warning C4267: '=': 'size_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  OVER_EXP.cpp
+  Sector.cpp
+  SectorManager.cpp
+  Session.cpp
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\Session.cpp(111,69): warning C4267: '=': 'size_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\Session.cpp(163,90): warning C4267: '=': 'size_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SessionManager.cpp
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\SessionManager.cpp(133,31): warning C4244: '=': 'SQLINTEGER'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\SessionManager.cpp(134,31): warning C4244: '=': 'SQLINTEGER'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\SessionManager.cpp(135,35): warning C4244: '=': 'SQLINTEGER'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다.
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\multi_iocp_server\SessionManager.cpp(148): warning C4715: 'SessionManager::IsAllowAccess': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  All 566 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  multi_iocp_server.vcxproj -> C:\Users\KWC\Desktop\RPG_GameProject\Multi_Server\x64\Release\multi_iocp_server.exe
