@@ -25,6 +25,21 @@
     <Filter Include="소스 파일\GameObject">
       <UniqueIdentifier>{aaf3c9ad-e59c-4cfc-a355-7d475af68deb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\GameObject\Monster">
+      <UniqueIdentifier>{75c7ba8c-6627-4b53-87ad-996176cf7304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GameObject\Player">
+      <UniqueIdentifier>{86631497-b5e1-4bd3-b796-57393aa57047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GameObject\UI">
+      <UniqueIdentifier>{dba33f0f-a8c5-4b26-82fb-0ca58660f66f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GameObject\Effect">
+      <UniqueIdentifier>{f3d4a92e-7463-4764-b767-32f30bb0c047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GameObject\Map">
+      <UniqueIdentifier>{cfdf19ac-c02d-4429-bd90-fa0da9a8a858}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="client.cpp">
@@ -35,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\GameObject\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -300,6 +318,9 @@
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\GameObject\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
