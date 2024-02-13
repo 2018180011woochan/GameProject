@@ -54,6 +54,15 @@
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일\GameObject\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>소스 파일\GameObject\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttack.cpp">
+      <Filter>소스 파일\GameObject\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="chess2.png">
@@ -321,6 +330,15 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>소스 파일\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>소스 파일\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>소스 파일\GameObject\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttack.h">
+      <Filter>소스 파일\GameObject\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

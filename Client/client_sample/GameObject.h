@@ -40,6 +40,11 @@ public:
 	}
 
 public:
+	virtual void Init() = 0;
+	virtual void Update() = 0;
+	virtual void Delete() = 0;
+
+public:
 	void set_info(int _id, int _level, int _hp, int _hpmax, int _x, int _y, int _sector)
 	{
 		id = _id;
@@ -213,17 +218,9 @@ public:
 public:
 	int id;
 	int m_x, m_y;
-	int level;
-	int exp, maxexp;
-	int hp, hpmax;
-	short sector;
+	
 
-	sf::Sprite m_HPBar;
-	sf::Sprite m_UIHP;
-	sf::Sprite m_PlayerUI;
-	sf::Sprite m_PlayerEmptyHP;
-
-private:
+protected:
 	bool m_showing;
 	sf::Sprite m_sprite;
 	sf::Text m_name;

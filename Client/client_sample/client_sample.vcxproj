@@ -123,10 +123,13 @@
   <ItemGroup>
     <ClCompile Include="client.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="chess2.png" />
@@ -217,8 +220,11 @@
     <ClInclude Include="include\SFML\Window\Window.hpp" />
     <ClInclude Include="include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\SFML\Graphics\Glsl.inl" />
