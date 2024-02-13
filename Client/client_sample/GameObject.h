@@ -217,8 +217,6 @@ public:
 	int exp, maxexp;
 	int hp, hpmax;
 	short sector;
-	char my_name[NAME_SIZE];
-	vector<int> party_list;
 
 	sf::Sprite m_HPBar;
 	sf::Sprite m_UIHP;
