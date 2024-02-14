@@ -121,6 +121,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ChatUI.cpp" />
     <ClCompile Include="client.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Monster.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="..\..\Server\GameServer\GameServer\Include.h" />
     <ClInclude Include="..\..\Server\GameServer\GameServer\protocol.h" />
     <ClInclude Include="..\..\Server\GameServer\GameServer\Struct.h" />
+    <ClInclude Include="ChatUI.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="include\SFML\Config.hpp" />
     <ClInclude Include="include\SFML\Graphics.hpp" />

@@ -63,6 +63,9 @@
     <ClCompile Include="PlayerAttack.cpp">
       <Filter>소스 파일\GameObject\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="ChatUI.cpp">
+      <Filter>소스 파일\GameObject\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="chess2.png">
@@ -339,6 +342,9 @@
     </ClInclude>
     <ClInclude Include="PlayerAttack.h">
       <Filter>소스 파일\GameObject\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatUI.h">
+      <Filter>소스 파일\GameObject\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
