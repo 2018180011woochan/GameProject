@@ -16,5 +16,9 @@ public:
 
 public:
 	void draw_block();
+
+private:
+	sf::Texture* board;
+	sf::Texture* Block;
 };
 

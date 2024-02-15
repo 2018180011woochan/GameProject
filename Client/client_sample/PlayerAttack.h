@@ -18,5 +18,8 @@ public:
 
 public:
 	void idraw();
+
+private:
+	sf::Texture* AttackSource;
 };
 

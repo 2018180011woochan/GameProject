@@ -3,6 +3,7 @@
 
 void PlayerAttack::Init()
 {
+	// texture 불러오기
 }
 
 void PlayerAttack::Update()
