@@ -17,5 +17,9 @@ public:
 	void a_draw() {
 		g_window->draw(m_sprite);
 	}
+
+private:
+	sf::Texture* ChatUI;
+	sf::Texture* Notice;
 };
 

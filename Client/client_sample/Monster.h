@@ -42,5 +42,11 @@ private:
 private:
 	sf::Text m_name;
 	sf::Text m_level;
+
+
+	sf::Texture* skeleton;
+	sf::Texture* wraith;
+	sf::Texture* devil;
+	sf::Texture* diablo;
 };
 

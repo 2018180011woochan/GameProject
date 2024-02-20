@@ -1,6 +1,7 @@
 //#define SFML_STATIC 1
 #include "stdafx.h"
 #include "GameObject.h"
+#include "Player.h"
 
 constexpr auto SCREEN_WIDTH = 16;
 constexpr auto SCREEN_HEIGHT = 16;
@@ -260,7 +261,8 @@ public:
 	}
 };
 
-OBJECT avatar;
+//OBJECT avatar;
+Player avatar;
 OBJECT players[MAX_USER];
 OBJECT npcs[NUM_NPC];
 OBJECT blocks[NUM_BLOCK];
@@ -272,16 +274,16 @@ vector<OBJECT> PlayerSkill;
 OBJECT MapObj;
 
 sf::Texture* board;
-sf::Texture* pieces;
+//sf::Texture* pieces;
 sf::Texture* skeleton;
 sf::Texture* wraith;
 sf::Texture* devil;
 sf::Texture* diablo;
 sf::Texture* AttackSource;
-sf::Texture* PlayerUI;
-sf::Texture* UI_HP;
-sf::Texture* UI_HP_empty;
-sf::Texture* HPBar;
+//sf::Texture* PlayerUI;
+//sf::Texture* UI_HP;
+//sf::Texture* UI_HP_empty;
+//sf::Texture* HPBar;
 sf::Texture* ChatUI;
 sf::Texture* Notice;
 sf::Texture* Block;
@@ -289,32 +291,34 @@ sf::Texture* Block;
 
 void client_initialize()
 {
+	avatar.Init();
+
 	board = new sf::Texture;
-	pieces = new sf::Texture;
+	//pieces = new sf::Texture;
 	skeleton = new sf::Texture;
 	wraith = new sf::Texture;
 	devil = new sf::Texture;
 	diablo = new sf::Texture;
 	AttackSource = new sf::Texture;
-	PlayerUI = new sf::Texture;
-	UI_HP = new sf::Texture;
-	UI_HP_empty = new sf::Texture;
-	HPBar = new sf::Texture;
+	//PlayerUI = new sf::Texture;
+	//UI_HP = new sf::Texture;
+	//UI_HP_empty = new sf::Texture;
+	//HPBar = new sf::Texture;
 	ChatUI = new sf::Texture;
 	Notice = new sf::Texture;
 	Block = new sf::Texture;
 
 	board->loadFromFile("Texture/Tile/Tile0.png");
-	pieces->loadFromFile("Texture/User/player.png");
+	//pieces->loadFromFile("Texture/User/player.png");
 	skeleton->loadFromFile("Texture/Monster/Skeleton.png");
 	wraith->loadFromFile("Texture/Monster/wraith4.png");
 	devil->loadFromFile("Texture/Monster/Devil2.png");
 	diablo->loadFromFile("Texture/Monster/Diablo.png");
 	AttackSource->loadFromFile("Texture/UserAttack/fire.png");
-	PlayerUI->loadFromFile("Texture/Single/StatusBar/2.png");
-	UI_HP->loadFromFile("Texture/Single/StatusBar/0.png");
-	UI_HP_empty->loadFromFile("Texture/Single/StatusBar/emptyhp.png");
-	HPBar->loadFromFile("Texture/User/hpbar.bmp");
+	//PlayerUI->loadFromFile("Texture/Single/StatusBar/2.png");
+	//UI_HP->loadFromFile("Texture/Single/StatusBar/0.png");
+	//UI_HP_empty->loadFromFile("Texture/Single/StatusBar/emptyhp.png");
+	//HPBar->loadFromFile("Texture/User/hpbar.bmp");
 	ChatUI->loadFromFile("Texture/Single/Window/chat.png");
 	Notice->loadFromFile("Texture/Single/Window/notice.png");
 	Block->loadFromFile("Texture/Tile/Tile22.png");
@@ -331,13 +335,15 @@ void client_initialize()
 		PlayerSkill.push_back(OBJECT{ *AttackSource, 0, 120, 60, 60 });
 	}
 
-	//avatar = OBJECT{ *pieces, 65, 50, 200, 200, *HPBar, 0, 0, 89, 10 };
-	avatar = OBJECT{ *pieces, 65, 50, 200, 200, *UI_HP, 0, 0, 80, 80, *PlayerUI, 0, 0, 800, 103,
-	*UI_HP_empty, 0, 0, 98, 88};
+	//avatar = OBJECT{ *pieces, 65, 50, 200, 200, *UI_HP, 0, 0, 80, 80, *PlayerUI, 0, 0, 800, 103,
+	//*UI_HP_empty, 0, 0, 98, 88};
+
+	avatar = Player{ 65, 50, 200, 200, 0, 0, 80, 80, 0, 0, 800, 103, 0, 0, 98, 88 };
 
 	avatar.move(4, 4);
 	for (auto& pl : players) {
-		pl = OBJECT{ *pieces, 50, 50, 200, 200, *HPBar, 0, 0, 89, 10 };
+		// 임시
+		//pl = OBJECT{ *pieces, 50, 50, 200, 200, *HPBar, 0, 0, 89, 10 };
 	}
 
 	for (auto& block : blocks) {
@@ -350,17 +356,19 @@ void client_initialize()
 
 void client_finish()
 {
+	avatar.Delete();
+
 	delete board;
-	delete pieces;
+	//delete pieces;
 	delete skeleton;
 	delete wraith;
 	delete devil;
 	delete diablo;
 	delete AttackSource;
-	delete PlayerUI;
-	delete UI_HP;
-	delete UI_HP_empty;
-	delete HPBar;
+	//delete PlayerUI;
+	//delete UI_HP;
+	//delete UI_HP_empty;
+	//delete HPBar;
 	delete ChatUI;
 	delete Notice;
 	delete Block;
@@ -374,7 +382,7 @@ void ProcessPacket(char* ptr)
 	case SC_LOGIN_OK:
 	{
 		SC_LOGIN_OK_PACKET* packet = reinterpret_cast<SC_LOGIN_OK_PACKET*>(ptr);
-		avatar.id = packet->id;
+		/*avatar.id = packet->id;
 		avatar.m_x = packet->x;
 		avatar.m_y = packet->y;
 		avatar.hp = packet->hp;
@@ -382,19 +390,23 @@ void ProcessPacket(char* ptr)
 		avatar.level = packet->level;
 		avatar.exp = packet->exp;
 		avatar.sector = packet->sector;
-		strcpy_s(avatar.my_name, Nickname);
+		strcpy_s(avatar.my_name, Nickname);*/
+
+		avatar.set_info(packet->id, packet->x, packet->y, packet->hp, packet->hpmax, packet->level,
+			packet->exp, packet->sector, Nickname);
 
 		avatar.set_name(Nickname, true);
-		avatar.set_pos(avatar.m_x, avatar.m_y, avatar.sector);
+		//avatar.set_pos(avatar.m_x, avatar.m_y, avatar.sector);
+		avatar.set_pos(avatar.getX(), avatar.getY(), avatar.getSector());
 		char lev[10];
-		sprintf_s(lev, "%d", avatar.level);
-		avatar.set_level(lev);
+		sprintf_s(lev, "%d", avatar.getLevel());
+		avatar.SetLevelFont(lev);
 
 		avatar.move(packet->x, packet->y);
 		g_left_x = packet->x - 8;
 		g_top_y = packet->y - 8;
-		avatar.m_PlayerEmptyHP.setTextureRect(sf::IntRect(0, 0, 0, 0));
-	
+		//avatar.m_PlayerEmptyHP.setTextureRect(sf::IntRect(0, 0, 0, 0));
+		avatar.SetPlayerEmptyHP(0, 0, 0, 0);
 		avatar.show();
 
 		break;
@@ -431,33 +443,33 @@ void ProcessPacket(char* ptr)
 			strcpy_s(players[id].my_name, packet->name);
 		}
 		else {
-			switch (packet->race)
-			{
-			case RACE_SKELETON:
-				npcs[id - MAX_USER] = OBJECT{ *skeleton, 0, 0, 38, 73 , *HPBar, 0, 0, 89, 10 };
-				break;
-			case RACE_WRIATH:
-				//npcs[id - MAX_USER] = OBJECT{ *wraith, 0, 0, 138, 149 , *HPBar, 0, 0, 89, 10 };
-				//npcs[id - MAX_USER] = OBJECT{ *wraith, 0, 0, 73, 73 , *HPBar, 0, 0, 89, 10 };
-				npcs[id - MAX_USER] = OBJECT{ *wraith, 0, 0, 103, 94 , *HPBar, 0, 0, 89, 10 };
-				break;
-			case RACE_DEVIL:
-				//npcs[id - MAX_USER] = OBJECT{ *devil, 0, 0, 161, 133 , *HPBar, 0, 0, 89, 10 };
-				npcs[id - MAX_USER] = OBJECT{ *devil, 0, 0, 73, 100 , *HPBar, 0, 0, 89, 10 };
-				break;
-			case RACE_DIABLO:
-				npcs[id - MAX_USER] = OBJECT{ *diablo, 0, 0, 135, 158 , *HPBar, 0, 0, 89, 10 };
-				break;
-			case RACE_BLOCK:
-				blocks[id] = OBJECT{ *Block, 0, 0, 2000, 2000 };
-				blocks[id].m_x = packet->x;
-				blocks[id].m_y = packet->y;
-				blocks[id].move(packet->x, packet->y);
-				blocks[id].show();
-				break;
-			default:
-				break;
-			}
+			//switch (packet->race)
+			//{
+			//case RACE_SKELETON:
+			//	npcs[id - MAX_USER] = OBJECT{ *skeleton, 0, 0, 38, 73 , *HPBar, 0, 0, 89, 10 };
+			//	break;
+			//case RACE_WRIATH:
+			//	//npcs[id - MAX_USER] = OBJECT{ *wraith, 0, 0, 138, 149 , *HPBar, 0, 0, 89, 10 };
+			//	//npcs[id - MAX_USER] = OBJECT{ *wraith, 0, 0, 73, 73 , *HPBar, 0, 0, 89, 10 };
+			//	npcs[id - MAX_USER] = OBJECT{ *wraith, 0, 0, 103, 94 , *HPBar, 0, 0, 89, 10 };
+			//	break;
+			//case RACE_DEVIL:
+			//	//npcs[id - MAX_USER] = OBJECT{ *devil, 0, 0, 161, 133 , *HPBar, 0, 0, 89, 10 };
+			//	npcs[id - MAX_USER] = OBJECT{ *devil, 0, 0, 73, 100 , *HPBar, 0, 0, 89, 10 };
+			//	break;
+			//case RACE_DIABLO:
+			//	npcs[id - MAX_USER] = OBJECT{ *diablo, 0, 0, 135, 158 , *HPBar, 0, 0, 89, 10 };
+			//	break;
+			//case RACE_BLOCK:
+			//	blocks[id] = OBJECT{ *Block, 0, 0, 2000, 2000 };
+			//	blocks[id].m_x = packet->x;
+			//	blocks[id].m_y = packet->y;
+			//	blocks[id].move(packet->x, packet->y);
+			//	blocks[id].show();
+			//	break;
+			//default:
+			//	break;
+			//}
 			if (packet->race == RACE_BLOCK) break;
 			npcs[id - MAX_USER].move(packet->x, packet->y);
 			char lev[10];
@@ -466,11 +478,11 @@ void ProcessPacket(char* ptr)
 			npcs[id - MAX_USER].set_name(packet->name, false);
 			npcs[id - MAX_USER].set_info(packet->id, packet->level, packet->hp, packet->hpmax, packet->x, packet->y, packet->sector);
 
-			if (avatar.level < npcs[id - MAX_USER].level)
+			if (avatar.getLevel() < npcs[id - MAX_USER].level)
 				npcs[id - MAX_USER].set_nameColor(NameColor::COLOR_RED);
-			if (avatar.level > npcs[id - MAX_USER].level)
+			if (avatar.getLevel() > npcs[id - MAX_USER].level)
 				npcs[id - MAX_USER].set_nameColor(NameColor::COLOR_GREEN);
-			if (avatar.level == npcs[id - MAX_USER].level)
+			if (avatar.getLevel() == npcs[id - MAX_USER].level)
 				npcs[id - MAX_USER].set_nameColor(NameColor::COLOR_YELLO);
 
 			npcs[id - MAX_USER].show();
@@ -481,7 +493,7 @@ void ProcessPacket(char* ptr)
 	{
 		SC_MOVE_OBJECT_PACKET* packet = reinterpret_cast<SC_MOVE_OBJECT_PACKET*>(ptr);
 
-		if (packet->id == avatar.id) {				// 본인 캐릭터 이동
+		if (packet->id == avatar.getID()) {				// 본인 캐릭터 이동
 			avatar.move(packet->x, packet->y);
 			g_left_x = packet->x - 8;
 			g_top_y = packet->y - 8;
@@ -501,36 +513,40 @@ void ProcessPacket(char* ptr)
 	case SC_STAT_CHANGE:
 	{
 		SC_STAT_CHANGE_PACKET* my_packet = reinterpret_cast<SC_STAT_CHANGE_PACKET*>(ptr);
-		if (my_packet->id == avatar.id) {
-			if (avatar.level != my_packet->level) {
+		if (my_packet->id == avatar.getID()) {
+			if (avatar.getLevel() != my_packet->level) {
 				char lev[10];
 				sprintf_s(lev, "%d", my_packet->level);
-				avatar.set_level(lev);
-				avatar.level = my_packet->level;
-
+				avatar.SetLevelFont(lev);
+				//avatar.level = my_packet->level;
+				avatar.SetLevel(my_packet->level);
 
 				for (int i = MAX_USER; i < NUM_NPC; ++i)
 				{
-					if (avatar.level < npcs[i].level)
+					if (avatar.getLevel() < npcs[i].level)
 						npcs[i].set_nameColor(NameColor::COLOR_RED);
-					if (avatar.level > npcs[i].level)
+					if (avatar.getLevel() > npcs[i].level)
 						npcs[i].set_nameColor(NameColor::COLOR_GREEN);
-					if (avatar.level == npcs[i].level)
+					if (avatar.getLevel() == npcs[i].level)
 						npcs[i].set_nameColor(NameColor::COLOR_YELLO);
 				}
 			}
 
 			
-			avatar.hp = my_packet->hp;
-			avatar.hpmax = my_packet->hpmax;
+			//avatar.hp = my_packet->hp;
+			avatar.setHP(my_packet->hp);
+			//avatar.hpmax = my_packet->hpmax;
+			avatar.setHPmax(my_packet->hpmax);
 
-			if (avatar.hp < 0)
-				avatar.hp = 0;
+			if (avatar.getHP() < 0)
+				avatar.setHP(0);
 			
-			int curhp = 88 * avatar.hp / avatar.hpmax;
+			int curhp = 88 * avatar.getHP() / avatar.getHPmax();
 
-			avatar.m_UIHP.setTextureRect(sf::IntRect(0, 0, 80, 80));
-			avatar.m_PlayerEmptyHP.setTextureRect(sf::IntRect(0, 0, 98, 88 - curhp));
+			//avatar.m_UIHP.setTextureRect(sf::IntRect(0, 0, 80, 80));
+			avatar.SetPlayerCurHP(0, 0, 80, 80);
+			//avatar.m_PlayerEmptyHP.setTextureRect(sf::IntRect(0, 0, 98, 88 - curhp));
+			avatar.SetPlayerEmptyHP(0, 0, 98, 88 - curhp);
 		}
 		else if (my_packet->id < MAX_USER) {
 			if (players[my_packet->id].level != my_packet->level) {
@@ -568,7 +584,7 @@ void ProcessPacket(char* ptr)
 		if (packet->race == RACE_BLOCK)
 			blocks[other_id].hide();
 		else {
-			if (other_id == avatar.id)
+			if (other_id == avatar.getID())
 				avatar.hide();
 			else if (other_id < MAX_USER)
 				players[other_id].hide();
@@ -581,18 +597,18 @@ void ProcessPacket(char* ptr)
 	case SC_PLAYER_ATTACK:
 	{
 		SC_REMOVE_OBJECT_PACKET* packet = reinterpret_cast<SC_REMOVE_OBJECT_PACKET*>(ptr);
-		if (packet->id == avatar.id) {
-			PlayerSkill[0].m_x = avatar.m_x;
-			PlayerSkill[0].m_y = avatar.m_y - 1;
+		if (packet->id == avatar.getID()) {
+			PlayerSkill[0].m_x = avatar.getX();
+			PlayerSkill[0].m_y = avatar.getY() - 1;
 			PlayerSkill[0].show();
-			PlayerSkill[1].m_x = avatar.m_x;
-			PlayerSkill[1].m_y = avatar.m_y + 1;
+			PlayerSkill[1].m_x = avatar.getX();
+			PlayerSkill[1].m_y = avatar.getY() + 1;
 			PlayerSkill[1].show();
-			PlayerSkill[2].m_x = avatar.m_x - 1;
-			PlayerSkill[2].m_y = avatar.m_y;
+			PlayerSkill[2].m_x = avatar.getX() - 1;
+			PlayerSkill[2].m_y = avatar.getY();
 			PlayerSkill[2].show();
-			PlayerSkill[3].m_x = avatar.m_x + 1;
-			PlayerSkill[3].m_y = avatar.m_y;
+			PlayerSkill[3].m_x = avatar.getX() + 1;
+			PlayerSkill[3].m_y = avatar.getY();
 			PlayerSkill[3].show();
 		}
 		else {
@@ -638,8 +654,8 @@ void ProcessPacket(char* ptr)
 		SC_CHAT_PACKET* p = reinterpret_cast<SC_CHAT_PACKET*>(ptr);
 		if (p->chat_type == CHATTYPE_SAY) {
 			string info = "[";
-			if (avatar.id == p->id)
-				info += avatar.my_name;
+			if (avatar.getID() == p->id)
+				info += avatar.getName();
 			else
 				info += players[p->id].my_name;
 			info += "]:";
@@ -961,7 +977,7 @@ int main()
 						CS_PARTY_PACKET p;
 						p.size = sizeof(CS_PARTY_PACKET);
 						p.type = CS_PARTY;
-						p.id = avatar.id;
+						p.id = avatar.getID();
 						p.allow = true;
 						p.master_id = temp_id;
 
@@ -978,7 +994,7 @@ int main()
 						CS_PARTY_PACKET p;
 						p.size = sizeof(CS_PARTY_PACKET);
 						p.type = CS_PARTY;
-						p.id = avatar.id;
+						p.id = avatar.getID();
 						p.allow = false;
 						p.master_id = temp_id;
 
@@ -994,7 +1010,7 @@ int main()
 					CS_PARTY_INVITE_PACKET party_p;
 					party_p.size = sizeof(CS_PARTY_INVITE_PACKET);
 					party_p.type = CS_PARTY_INVITE;
-					party_p.master_id = avatar.id;
+					party_p.master_id = avatar.getID();
 
 					send_packet(&party_p);
 					break;

@@ -1,16 +1,11 @@
-﻿  ChatUI.cpp
+﻿  Player.cpp
   client.cpp
-C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(759,38): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(762,42): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(767,36): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(770,43): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(807,38): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(850,40): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(1016,98): warning C4267: '=': 'size_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GameObject.cpp
-  Monster.cpp
-  Player.cpp
-  PlayerAttack.cpp
-  Tile.cpp
+C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(775,38): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(778,42): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(783,36): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(786,43): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(823,38): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(866,40): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KWC\Desktop\RPG_GameProject\Client\client_sample\client.cpp(1032,98): warning C4267: '=': 'size_t'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다...
   client_sample.vcxproj -> C:\Users\KWC\Desktop\RPG_GameProject\Client\x64\Debug\client_sample.exe
