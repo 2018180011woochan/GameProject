@@ -3,6 +3,18 @@
 
 void Monster::Init()
 {
+	// npc수만큼 루프 돌면서 불러오기 하는게 말이 안됨. 이거는 client에서 한번 불러오는걸로 해야하나?>
+	// 아니면 clinet init 할때 한번 불러오고 저장만 딱 해줄까
+	// 고민중..
+	skeleton = new sf::Texture;
+	wraith = new sf::Texture;
+	devil = new sf::Texture;
+	diablo = new sf::Texture;
+
+	skeleton->loadFromFile("Texture/Monster/Skeleton.png");
+	wraith->loadFromFile("Texture/Monster/wraith4.png");
+	devil->loadFromFile("Texture/Monster/Devil2.png");
+	diablo->loadFromFile("Texture/Monster/Diablo.png");
 }
 
 void Monster::Update()
@@ -11,6 +23,10 @@ void Monster::Update()
 
 void Monster::Delete()
 {
+	delete skeleton;
+	delete wraith;
+	delete devil;
+	delete diablo;
 }
 
 void Monster::set_info(int _id, int _level, int _hp, int _hpmax, int _x, int _y, int _sector)
@@ -63,7 +79,7 @@ void Monster::set_name(const char str[], bool _ui)
 	
 }
 
-void Monster::set_level(const char level[])
+void Monster::SetLevelFont(const char level[])
 {
 	m_level.setFont(g_font);
 	m_level.setString(level);
@@ -90,4 +106,9 @@ void Monster::set_nameColor(NameColor _color)
 	default:
 		break;
 	}
+}
+
+void Monster::setHPBarRect(int left, int top, int width, int height)
+{
+	m_HPBar.setTextureRect(sf::IntRect(left, top, width, height));
 }

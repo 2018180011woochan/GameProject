@@ -3,6 +3,7 @@
 class Monster : public GameObject
 {
 public:
+	Monster() {}
 	Monster(sf::Texture& t, int x, int y, int x2, int y2, sf::Texture& hpbar, int tx, int ty, int tx2, int ty2) {
 		m_showing = false;
 		m_sprite.setTexture(t);
@@ -10,7 +11,30 @@ public:
 		m_HPBar.setTexture(hpbar);
 		m_HPBar.setTextureRect(sf::IntRect(tx, ty, tx2, ty2));
 		set_name("NONAME", false);
-		set_level(0);
+		SetLevelFont(0);
+	}
+	// after
+	Monster(RACE race, int x, int y, int x2, int y2, /*sf::Texture& hpbar,*/ int tx, int ty, int tx2, int ty2) {
+		m_showing = false;
+
+		switch (race) {
+		case RACE_SKELETON:
+			m_sprite.setTexture(*skeleton);
+			break;
+		case RACE_DEVIL:
+			m_sprite.setTexture(*devil);
+			break;
+		case RACE_DIABLO:
+			m_sprite.setTexture(*diablo);
+			break;
+		}
+
+		m_sprite.setTextureRect(sf::IntRect(x, y, x2, y2));
+		// hpbar 나중에 하기
+		//m_HPBar.setTexture(hpbar);
+		//m_HPBar.setTextureRect(sf::IntRect(tx, ty, tx2, ty2));
+		set_name("NONAME", false);
+		SetLevelFont(0);
 	}
 
 public:
@@ -25,9 +49,23 @@ public:
 
 	void set_name(const char str[], bool _ui);
 
-	void set_level(const char level[]);
+	void SetLevelFont(const char level[]);
 	void set_nameColor(NameColor _color);
-	
+	void setHPBarRect(int left, int top, int width, int height);
+
+	void setHP(int _hp) { hp = _hp; }
+	void setHPmax(int _hpmax) { hpmax = _hpmax; }
+	void setLevel(int _lev) { level = _lev; }
+
+public:
+	int getX() { return m_x; }
+	int getY() { return m_y; }
+	int getSector() { return sector; }
+	int getLevel() { return level; }
+	int getID() { return id; }
+	int getHP() { return hp; }
+	int getHPmax() { return hpmax; }
+
 private:
 	int level;
 	int hp, hpmax;
@@ -43,7 +81,7 @@ private:
 	sf::Text m_name;
 	sf::Text m_level;
 
-
+	
 	sf::Texture* skeleton;
 	sf::Texture* wraith;
 	sf::Texture* devil;
