@@ -3,6 +3,12 @@
 #include "GameObject.h"
 #include "Player.h"
 
+int g_left_x;
+int g_top_y;
+sf::RenderWindow* g_window;
+sf::Font g_font;
+sf::Text chatmessage;
+
 constexpr auto SCREEN_WIDTH = 16;
 constexpr auto SCREEN_HEIGHT = 16;
 
@@ -725,7 +731,7 @@ void client_main()
 
 	
 
-	//avatar.draw_hp();
+	//avatar.draw_hp(false);
 	
 	for (auto& pl : players) pl.draw();
 	for (auto& party : avatar.party_list) {

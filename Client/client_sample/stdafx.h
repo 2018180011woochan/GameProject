@@ -28,8 +28,8 @@ enum NameColor { COLOR_GREEN, COLOR_YELLO, COLOR_RED };
 
 static sf::TcpSocket socket;
 
-static int g_left_x;
-static int g_top_y;
-static sf::RenderWindow* g_window;
-static sf::Font g_font;
-static sf::Text chatmessage;
+extern int g_left_x;
+extern int g_top_y;
+extern sf::RenderWindow* g_window;
+extern sf::Font g_font;
+extern sf::Text chatmessage;

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include <string>
+
 void Player::Init()
 {
 	pieces = new sf::Texture;
@@ -75,25 +76,25 @@ void Player::draw_ui()
 	float rx = (m_x - g_left_x) * 65.0f + 8;
 	float ry = (m_y - g_top_y) * 65.0f + 8;
 	m_sprite.setPosition(rx, ry);
-	//g_window->draw(m_sprite);
+	g_window->draw(m_sprite);
 
 	m_PlayerUI.setPosition(100, 900);
-	//g_window->draw(m_PlayerUI);
+	g_window->draw(m_PlayerUI);
 
 	m_UIHP.setPosition(130, 910);
-	//g_window->draw(m_UIHP);
+	g_window->draw(m_UIHP);
 
 	m_PlayerEmptyHP.setPosition(133, 910);
-	//g_window->draw(m_PlayerEmptyHP);
+	g_window->draw(m_PlayerEmptyHP);
 
 	m_name.setPosition(rx, ry - 40);
-	//g_window->draw(m_name);
+	g_window->draw(m_name);
 
 	m_level.setPosition(rx - 40, ry - 40);
-	//g_window->draw(m_level);
+	g_window->draw(m_level);
 
 	pos.setPosition(20, 20);
-	//g_window->draw(pos);
+	g_window->draw(pos);
 }
 
 void Player::set_name(const char str[], bool _ui)
