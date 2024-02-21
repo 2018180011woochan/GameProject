@@ -13,29 +13,7 @@ public:
 		set_name("NONAME", false);
 		SetLevelFont(0);
 	}
-	// after
-	Monster(RACE race, int x, int y, int x2, int y2, /*sf::Texture& hpbar,*/ int tx, int ty, int tx2, int ty2) {
-		m_showing = false;
-
-		switch (race) {
-		case RACE_SKELETON:
-			m_sprite.setTexture(*skeleton);
-			break;
-		case RACE_DEVIL:
-			m_sprite.setTexture(*devil);
-			break;
-		case RACE_DIABLO:
-			m_sprite.setTexture(*diablo);
-			break;
-		}
-
-		m_sprite.setTextureRect(sf::IntRect(x, y, x2, y2));
-		// hpbar 나중에 하기
-		//m_HPBar.setTexture(hpbar);
-		//m_HPBar.setTextureRect(sf::IntRect(tx, ty, tx2, ty2));
-		set_name("NONAME", false);
-		SetLevelFont(0);
-	}
+	
 
 public:
 	// GameObject을(를) 통해 상속됨
@@ -82,9 +60,9 @@ private:
 	sf::Text m_level;
 
 	
-	sf::Texture* skeleton;
-	sf::Texture* wraith;
-	sf::Texture* devil;
-	sf::Texture* diablo;
+	//sf::Texture* skeleton;
+	//sf::Texture* wraith;
+	//sf::Texture* devil;
+	//sf::Texture* diablo;
 };
 

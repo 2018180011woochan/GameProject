@@ -282,52 +282,49 @@ vector<OBJECT> PlayerSkill;
 OBJECT MapObj;
 
 sf::Texture* board;
-//sf::Texture* pieces;
-//sf::Texture* skeleton;
-//sf::Texture* wraith;
-//sf::Texture* devil;
-//sf::Texture* diablo;
+sf::Texture* skeleton;
+sf::Texture* wraith;
+sf::Texture* devil;
+sf::Texture* diablo;
 sf::Texture* AttackSource;
 //sf::Texture* PlayerUI;
 //sf::Texture* UI_HP;
 //sf::Texture* UI_HP_empty;
-//sf::Texture* HPBar;
+sf::Texture* HPBar;
 sf::Texture* ChatUI;
 sf::Texture* Notice;
 sf::Texture* Block;
 
-
-void client_initialize()
+void LoadTexture()
 {
 	board = new sf::Texture;
-	//pieces = new sf::Texture;
-	/*skeleton = new sf::Texture;
-	wraith = new sf::Texture;
-	devil = new sf::Texture;
-	diablo = new sf::Texture;*/
 	AttackSource = new sf::Texture;
-	//PlayerUI = new sf::Texture;
-	//UI_HP = new sf::Texture;
-	//UI_HP_empty = new sf::Texture;
-	//HPBar = new sf::Texture;
 	ChatUI = new sf::Texture;
 	Notice = new sf::Texture;
 	Block = new sf::Texture;
+	HPBar = new sf::Texture;
+
+	skeleton = new sf::Texture;
+	wraith = new sf::Texture;
+	devil = new sf::Texture;
+	diablo = new sf::Texture;
 
 	board->loadFromFile("Texture/Tile/Tile0.png");
-	//pieces->loadFromFile("Texture/User/player.png");
-	/*skeleton->loadFromFile("Texture/Monster/Skeleton.png");
-	wraith->loadFromFile("Texture/Monster/wraith4.png");
-	devil->loadFromFile("Texture/Monster/Devil2.png");
-	diablo->loadFromFile("Texture/Monster/Diablo.png");*/
 	AttackSource->loadFromFile("Texture/UserAttack/fire.png");
-	//PlayerUI->loadFromFile("Texture/Single/StatusBar/2.png");
-	//UI_HP->loadFromFile("Texture/Single/StatusBar/0.png");
-	//UI_HP_empty->loadFromFile("Texture/Single/StatusBar/emptyhp.png");
-	//HPBar->loadFromFile("Texture/User/hpbar.bmp");
 	ChatUI->loadFromFile("Texture/Single/Window/chat.png");
 	Notice->loadFromFile("Texture/Single/Window/notice.png");
 	Block->loadFromFile("Texture/Tile/Tile22.png");
+	HPBar->loadFromFile("Texture/User/hpbar.bmp");
+
+	skeleton->loadFromFile("Texture/Monster/Skeleton.png");
+	wraith->loadFromFile("Texture/Monster/wraith4.png");
+	devil->loadFromFile("Texture/Monster/Devil2.png");
+	diablo->loadFromFile("Texture/Monster/Diablo.png");
+}
+
+void client_initialize()
+{
+	LoadTexture();	
 
 	MapObj = OBJECT{ *board, 0, 0, 2000, 2000 };
 	
@@ -363,20 +360,15 @@ void client_initialize()
 void client_finish()
 {
 	avatar.Delete();
-	for (auto& npc : npcs)
-		npc.Delete();
 
 	delete board;
-	//delete pieces;
-	/*delete skeleton;
+	delete skeleton;
 	delete wraith;
 	delete devil;
-	delete diablo;*/
+	delete diablo;
 	delete AttackSource;
-	//delete PlayerUI;
-	//delete UI_HP;
-	//delete UI_HP_empty;
-	//delete HPBar;
+
+	delete HPBar;
 	delete ChatUI;
 	delete Notice;
 	delete Block;
@@ -390,21 +382,11 @@ void ProcessPacket(char* ptr)
 	case SC_LOGIN_OK:
 	{
 		SC_LOGIN_OK_PACKET* packet = reinterpret_cast<SC_LOGIN_OK_PACKET*>(ptr);
-		/*avatar.id = packet->id;
-		avatar.m_x = packet->x;
-		avatar.m_y = packet->y;
-		avatar.hp = packet->hp;
-		avatar.hpmax = packet->hpmax;
-		avatar.level = packet->level;
-		avatar.exp = packet->exp;
-		avatar.sector = packet->sector;
-		strcpy_s(avatar.my_name, Nickname);*/
 
 		avatar.set_info(packet->id, packet->x, packet->y, packet->hp, packet->hpmax, packet->level,
 			packet->exp, packet->sector, Nickname);
 
 		avatar.set_name(Nickname, true);
-		//avatar.set_pos(avatar.m_x, avatar.m_y, avatar.sector);
 		avatar.set_pos(avatar.getX(), avatar.getY(), avatar.getSector());
 		char lev[10];
 		sprintf_s(lev, "%d", avatar.getLevel());
@@ -413,7 +395,6 @@ void ProcessPacket(char* ptr)
 		avatar.move(packet->x, packet->y);
 		g_left_x = packet->x - 8;
 		g_top_y = packet->y - 8;
-		//avatar.m_PlayerEmptyHP.setTextureRect(sf::IntRect(0, 0, 0, 0));
 		avatar.SetPlayerEmptyHP(0, 0, 0, 0);
 		avatar.show();
 
@@ -454,20 +435,16 @@ void ProcessPacket(char* ptr)
 			switch (packet->race)
 			{
 			case RACE_SKELETON:
-				//npcs[id - MAX_USER] = OBJECT{ *skeleton, 0, 0, 38, 73 , *HPBar, 0, 0, 89, 10 };
-				npcs[id - MAX_USER] = Monster{ RACE_SKELETON, 0, 0, 38, 73, 0, 0, 89, 10 };
+				npcs[id - MAX_USER] = Monster{ *skeleton, 0, 0, 38, 73 , *HPBar, 0, 0, 89, 10 };
 				break;
 			case RACE_WRIATH:
-				//npcs[id - MAX_USER] = OBJECT{ *wraith, 0, 0, 103, 94 , *HPBar, 0, 0, 89, 10 };
-				npcs[id - MAX_USER] = Monster{ RACE_WRIATH, 0, 0, 103, 94 , 0, 0, 89, 10 };
+				npcs[id - MAX_USER] = Monster{ *wraith, 0, 0, 103, 94 , *HPBar, 0, 0, 89, 10 };
 				break;
 			case RACE_DEVIL:
-				//npcs[id - MAX_USER] = OBJECT{ *devil, 0, 0, 73, 100 , *HPBar, 0, 0, 89, 10 };
-				npcs[id - MAX_USER] = Monster{ RACE_DEVIL, 0, 0, 73, 100 , 0, 0, 89, 10 };
+				npcs[id - MAX_USER] = Monster{ *devil, 0, 0, 73, 100 , *HPBar, 0, 0, 89, 10 };
 				break;
 			case RACE_DIABLO:
-				//npcs[id - MAX_USER] = OBJECT{ *diablo, 0, 0, 135, 158 , *HPBar, 0, 0, 89, 10 };
-				npcs[id - MAX_USER] = Monster{ RACE_DIABLO, 0, 0, 135, 158 , 0, 0, 89, 10 };
+				npcs[id - MAX_USER] = Monster{ *diablo, 0, 0, 135, 158 , *HPBar, 0, 0, 89, 10 };
 				break;
 			case RACE_BLOCK:
 				blocks[id] = OBJECT{ *Block, 0, 0, 2000, 2000 };
@@ -587,7 +564,7 @@ void ProcessPacket(char* ptr)
 			npcs[my_packet->id - MAX_USER].setHP(my_packet->hp);
 			npcs[my_packet->id - MAX_USER].setHPmax(my_packet->hpmax);
 			int curhp = 89 * npcs[my_packet->id - MAX_USER].getHP() / npcs[my_packet->id - MAX_USER].getHPmax();
-			//npcs[my_packet->id - MAX_USER].setHPBarRect(0, 0, curhp, 10);
+			npcs[my_packet->id - MAX_USER].setHPBarRect(0, 0, curhp, 10);
 		}
 		break;
 	}
