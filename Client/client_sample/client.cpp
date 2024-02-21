@@ -297,7 +297,7 @@ sf::Texture* Block;
 
 void client_initialize()
 {
-	avatar.Init();
+	
 
 	board = new sf::Texture;
 	//pieces = new sf::Texture;
@@ -345,7 +345,7 @@ void client_initialize()
 	//*UI_HP_empty, 0, 0, 98, 88};
 
 	avatar = Player{ 65, 50, 200, 200, 0, 0, 80, 80, 0, 0, 800, 103, 0, 0, 98, 88 };
-
+	avatar.Init();
 	avatar.move(4, 4);
 	for (auto& pl : players) {
 		// юс╫ц
